@@ -1,3 +1,25 @@
+//varibili globali:
+let number1 = 0;
+let number2 = 0;
+let operator = "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //funzioni per le operazioni basilari:
 function add(num1, num2){
     return Number(num1) + Number(num2);
@@ -17,4 +39,25 @@ function divide(num1, num2){
     }else{
         return "Error";
     }
+}
+
+function operate(operator, number1, number2){
+    switch(operator){
+        case "+":
+            return add(number1, number2);
+            break;
+        case "-":
+            return subtract(number1, number2);
+            break;
+        case "*":
+            return multiply(number1, number2);
+            break;
+        case "/":
+            return divide(number1, number2);
+            break;
+        default:
+            return "Operator Error";
+            break;        
+    }
+
 }
