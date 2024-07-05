@@ -3,6 +3,7 @@ let number1 = 0;
 let number2 = 0;
 let operator = "";
 let displayValue = "";
+let displayDiv = document.querySelector("#displayDiv");
 let displayPar = document.querySelector("#displayPar");
 let pad = document.querySelector("#padDiv"); 
 //changeDisplayText("34 + 0 -12");
@@ -64,9 +65,9 @@ function operate(operator, number1, number2){
 
 //funzione che modifica il contenuto del display:
 function changeDisplayText(string){
-   
+    if(displayPar.textContent.length <= 22){
    displayPar.textContent += string;
-    
+    }
     
 
 }
@@ -83,6 +84,9 @@ function eraseDisplayText(all){
 
 //eventListener:
 padDiv.addEventListener("click", (e)=>{
+    
+        
+    
     let target = e.target;
     switch(target.id){
         case "one":
@@ -121,8 +125,21 @@ padDiv.addEventListener("click", (e)=>{
         case "delete":
             eraseDisplayText(false);
             break; 
-        case                                    
-    }
+        case "add":
+            changeDisplayText("+");
+            break;    
+        case "subtract":
+                changeDisplayText("-");
+                break;
+        case "multiply":
+            changeDisplayText("X");
+            break;
+        case "divide":
+            changeDisplayText("÷");
+            break;
+                                                   
+    
+}
 
 
 });
