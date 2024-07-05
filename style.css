@@ -18,6 +18,7 @@
     height: 120px;
     border-radius:15%;
     margin-bottom: 40px;
+    z-index: -1;
     
 }
 
@@ -71,10 +72,22 @@
 
 }
 #display{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
     
     flex-shrink: 0;
     flex-grow: 0;
    
+    
+   
+}
+
+p{
+    font-family: "Kode Mono", monospace;
+    color: white;
+    font-size: 40px;
 }
 
 .title{
@@ -93,6 +106,6 @@ body{
     justify-content: center;
     align-items: center;
     background-image: url("./img/—Pngtree—abstract\ metal\ background_3550153.jpg");
-    z-index: -1;
+    z-index: -2;
     background-repeat: no-repeat;
 }

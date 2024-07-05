@@ -2,10 +2,10 @@
 let number1 = 0;
 let number2 = 0;
 let operator = "";
-
-
-
-
+let displayValue = "";
+let displayPar = document.querySelector("#displayPar");
+let pad = document.querySelector("#padDiv"); 
+//changeDisplayText("34 + 0 -12");
 
 
 
@@ -61,3 +61,15 @@ function operate(operator, number1, number2){
     }
 
 }
+
+//funzione che modifica il contenuto del display:
+function changeDisplayText(string){
+   
+   displayPar.textContent += string;
+    
+    
+
+}
+
+
+//eventListener:
