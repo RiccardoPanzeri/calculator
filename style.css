@@ -15,11 +15,50 @@
     flex-shrink: 0;
     flex-grow: 0;
     width: 700px;
-    height: 200px;
+    height: 120px;
     border-radius:15%;
+    margin-bottom: 40px;
     
 }
 
+#padDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.button{
+    width: 80px;
+    height: 70px;
+}
+
+
+#numPadDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.numRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap:50px;
+}
+
+#operatorDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:16px;
+
+}
 #display{
     background-image: url("./img/green.jpg");
     flex-shrink: 0;
