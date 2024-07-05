@@ -10,7 +10,7 @@
     justify-content: center;
     background-image: url("./img/green.jpg");
     background-size: cover;
-    border: solid silver 3px;
+    border: solid darkgrey 5px;
     border-style: outset;
     flex-shrink: 0;
     flex-grow: 0;
@@ -31,8 +31,16 @@
 }
 
 .button{
-    width: 80px;
+    width: 100px;
     height: 70px;
+    font-size: 25px;
+    font-weight: 900;
+    font-family: "Kode Mono", monospace;
+    border-radius: 30%;
+    border-style: outset;
+    
+    background-image: url("./img/metallic1.jpg");
+    background-size: cover;
 }
 
 
@@ -42,6 +50,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    padding-left: 190px;
     gap: 30px;
 }
 
@@ -57,10 +66,12 @@
     flex-direction: column;
     justify-content: center;
     gap:16px;
+    margin-left: 50px;
+    padding-left: 20px;
 
 }
 #display{
-    background-image: url("./img/green.jpg");
+    
     flex-shrink: 0;
     flex-grow: 0;
    
@@ -68,8 +79,10 @@
 
 .title{
     font-size: 50px;
+    text-shadow: -2px -2px 0 rgba(169, 169, 169, 0.5), 2px -2px 0 rgba(169, 169, 169, 0.568), -2px 2px 0 black, 2px 2px 0 black;
     font-family: "Kode Mono", monospace;
-    color: lightgreen;
+    
+    color: rgb(25, 236, 25);
 }
 
 body{
