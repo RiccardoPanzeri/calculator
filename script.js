@@ -39,7 +39,12 @@ function divide(num1, num2){
     if(num2 !== 0){
         return num1 / num2;
     }else{
-        return "Error";
+        displayPar.textContent = "Error";
+        number1 = 0;
+        number2 = 0;
+        operator = "";
+        return "1";
+       
     }
 }
 
@@ -108,6 +113,8 @@ function eraseDisplayText(all){
 
 //eventListener:
 padDiv.addEventListener("click", (e)=>{
+
+    
     
     let target = e.target;
     switch(target.id){
@@ -249,7 +256,7 @@ padDiv.addEventListener("click", (e)=>{
         }
             break; 
         case "equals":
-            if(!displayResult){
+            if(!displayResult && displayPar.textContent !== "Error"){
             parseDisplay();
             displayPar.textContent = parseFloat(operate(operator, number1, number2).toFixed(2));
             displayResult = true;
