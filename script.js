@@ -162,7 +162,7 @@ padDiv.addEventListener("click", (e)=>{
             
             parseDisplay();
             eraseDisplayText(true);
-            changeDisplayText(operate(operator, number1, number2));
+            changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
             changeDisplayText("+");
             operator = "+";
             
@@ -180,21 +180,78 @@ padDiv.addEventListener("click", (e)=>{
         }
             break;    
         case "subtract":
-                changeDisplayText("-");
-                operator = "-";
-                break;
+            if(!(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+            displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷") && operator !== ""){
+            
+            parseDisplay();
+            eraseDisplayText(true);
+            changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
+            changeDisplayText("-");
+            operator = "-";
+            
+            console.log(displayValue);
+        }else if(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+        displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
+            eraseDisplayText(false);
+            changeDisplayText("-");
+            operator = "-";
+            
+        }else{
+            changeDisplayText("-");
+            operator = "-";
+            
+        }
+            break;  
         case "multiply":
+            if(!(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+            displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷") && operator !== ""){
+            
+            parseDisplay();
+            eraseDisplayText(true);
+            changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
             changeDisplayText("X");
             operator = "X";
-            break;
+            
+            console.log(displayValue);
+        }else if(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+        displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
+            eraseDisplayText(false);
+            changeDisplayText("X");
+            operator = "X";
+            
+        }else{
+            changeDisplayText("X");
+            operator = "X";
+            
+        }
+            break;  
         case "divide":
+            if(!(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+            displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷") && operator !== ""){
+            
+            parseDisplay();
+            eraseDisplayText(true);
+            changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
             changeDisplayText("÷");
             operator = "÷";
-            break;
+            
+            console.log(displayValue);
+        }else if(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+        displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
+            eraseDisplayText(false);
+            changeDisplayText("÷");
+            operator = "÷";
+            
+        }else{
+            changeDisplayText("÷");
+            operator = "÷";
+            
+        }
+            break; 
         case "equals":
             if(!displayResult){
             parseDisplay();
-            displayPar.textContent = operate(operator, number1, number2);
+            displayPar.textContent = parseFloat(operate(operator, number1, number2).toFixed(2));
             displayResult = true;
             console.log(Number(displayValue));
             operator = "";
