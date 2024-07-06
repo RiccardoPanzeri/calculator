@@ -1,8 +1,9 @@
 //varibili globali:
 let number1 = 0;
 let number2 = 0;
+let displayResult = false;
 let operator = "";
-let displayValue = "";
+let displayValue = 0;
 let displayDiv = document.querySelector("#displayDiv");
 let displayPar = document.querySelector("#displayPar");
 let pad = document.querySelector("#padDiv"); 
@@ -42,19 +43,33 @@ function divide(num1, num2){
     }
 }
 
+//funzione che recupera operandi e operatori:
+function parseDisplay(){
+    const array = displayPar.textContent.split(operator);
+    array[0].slice(-1);
+    console.table(array);
+    number1 = Number(array[0]);
+    number2 = Number(array[1]);
+    console.log(number1);
+}
+
 function operate(operator, number1, number2){
     switch(operator){
         case "+":
-            return add(number1, number2);
+            displayValue = add(number1, number2);
+            return displayValue;
             break;
         case "-":
-            return subtract(number1, number2);
+            displayValue = subtract(number1, number2);
+            return displayValue;
             break;
-        case "*":
-            return multiply(number1, number2);
+        case "X":
+            displayValue = multiply(number1, number2);
+            return displayValue;
             break;
-        case "/":
-            return divide(number1, number2);
+        case "÷":
+            displayValue = divide(number1, number2);
+            return displayValue;
             break;
         default:
             return "Operator Error";
@@ -65,6 +80,7 @@ function operate(operator, number1, number2){
 
 //funzione che modifica il contenuto del display:
 function changeDisplayText(string){
+    displayResult = false;
     if(displayPar.textContent.length <= 22 && displayPar.textContent !=="0"){
    displayPar.textContent += string;
     }else if(displayPar.textContent === "0"){
@@ -131,20 +147,35 @@ padDiv.addEventListener("click", (e)=>{
             if(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
             displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
             
-            changeDisplayText("no");
+            parseDisplay();
+            changeDisplayText(operate(operator, number1, number2));
         }else{
             changeDisplayText("+");
+            operator = "+";
         }
             break;    
         case "subtract":
                 changeDisplayText("-");
+                operator = "-";
                 break;
         case "multiply":
             changeDisplayText("X");
+            operator = "X";
             break;
         case "divide":
             changeDisplayText("÷");
+            operator = "÷";
             break;
+        case "equals":
+            if(!displayResult){
+            parseDisplay();
+            displayPar.textContent = operate(operator, number1, number2);
+            displayResult = true;
+            console.log(Number(displayValue));
+            console.log(operator);
+            
+            }
+            break;   
                                                    
     
 }
