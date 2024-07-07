@@ -2,6 +2,7 @@
 let number1 = 0;
 let number2 = 0;
 let displayResult = false;
+let negativeNumber = false;
 let operator = "";
 let displayValue = 0;
 let displayDiv = document.querySelector("#displayDiv");
@@ -50,15 +51,38 @@ function divide(num1, num2){
 
 //funzione che recupera operandi e operatori:
 function parseDisplay(){
+    if(displayPar.textContent.at(0) === "-"){
+       displayPar.textContent = displayPar.textContent.replace("-", "");
+       console.log(displayPar.textContent);
+       negativeNumber = true;
+       operator = "";
+    }
     const array = displayPar.textContent.split(operator);
     array[0].slice(-1);
     console.table(array);
-    number1 = Number(array[0]);
-    number2 = Number(array[1]);
+    if(array[0] >= 9007199254740991 || array[1] >= 9007199254740991){
+        displayPar.textContent = "Max Value Error";
+        displayValue = 0;
+        number1 = 0;
+        number2 = 0;
+        operator = "";
+   
+    }else{
+        if(negativeNumber){
+        number1 = Number(array[0] * (-1));
+    }else{
+        number1 = Number(array[0]);
+    }
+        number2 = Number(array[1]);
+    }
     console.log(number1);
+    
 }
 
 function operate(operator, number1, number2){
+    if(displayPar.textContent === "Max Value Error"){
+        return "1";
+    }
     switch(operator){
         case "+":
             displayValue = add(number1, number2);
@@ -85,11 +109,11 @@ function operate(operator, number1, number2){
 
 //funzione che modifica il contenuto del display:
 function changeDisplayText(string){
-    if(displayResult && !(string === "+" || string === "X" || string === "-" || string === "÷") || displayPar.textContent === "Error"){
+    if(displayResult && !(string === "+" || string === "X" || string === "-" || string === "÷") || displayPar.textContent === "Error" || displayPar.textContent === "Max Value Error"){
         displayPar.textContent = "";
     }
     displayResult = false;
-    if(displayPar.textContent.length <= 22 && displayPar.textContent !=="0"){
+    if(displayPar.textContent.length <= 20 && displayPar.textContent !=="0"){
    displayPar.textContent += string;
     }else if(displayPar.textContent === "0"){
         displayPar.textContent = string;
@@ -103,7 +127,7 @@ function changeDisplayText(string){
 //funzione che cancella
 function eraseDisplayText(all){
     if(all === true){
-        displayPar.textContent = "";
+        displayPar.textContent = "0";
     }else{
         displayPar.textContent = displayPar.textContent.slice(0, -1);
         
@@ -159,7 +183,12 @@ padDiv.addEventListener("click", (e)=>{
             displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
                 operator = "";
             }
-            eraseDisplayText(false);
+            if(displayPar.textContent === "Error" || displayPar.textContent === "Max Value Error"){
+                eraseDisplayText(true);
+            }else{
+                eraseDisplayText(false)
+
+            }
             console.log("blah" + displayPar.textContent.at(-1));
             console.log(operator);
             break; 
@@ -194,7 +223,9 @@ padDiv.addEventListener("click", (e)=>{
             eraseDisplayText(true);
             changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
             changeDisplayText("-");
-            operator = "-";
+                
+                operator = "-";
+                
             
             console.log(displayValue);
         }else if(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
@@ -206,6 +237,7 @@ padDiv.addEventListener("click", (e)=>{
         }else{
             changeDisplayText("-");
             operator = "-";
+            
             
         }
             break;  
@@ -256,12 +288,14 @@ padDiv.addEventListener("click", (e)=>{
         }
             break; 
         case "equals":
-            if(!displayResult && displayPar.textContent !== "Error"){
+            if(!displayResult && displayPar.textContent !== "Error" && operator !== "" && displayPar.textContent !== "Max Value Error"){
             parseDisplay();
             displayPar.textContent = parseFloat(operate(operator, number1, number2).toFixed(2));
             displayResult = true;
             console.log(Number(displayValue));
             operator = "";
+            number1 = 0;
+            number2 = 0;
             displayValue = 0;
             console.log(operator);
             
