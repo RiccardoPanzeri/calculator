@@ -51,11 +51,11 @@ function divide(num1, num2){
 
 //funzione che recupera operandi e operatori:
 function parseDisplay(){
-    if(displayPar.textContent.at(0) === "-"){
-       displayPar.textContent = displayPar.textContent.replace("-", "");
-       console.log(displayPar.textContent);
-       negativeNumber = true;
-       operator = "";
+    if (displayPar.textContent.at(0) === "-"){
+        negativeNumber = true;
+    }
+    if(negativeNumber){
+        displayPar.textContent = displayPar.textContent.replace("-", "");
     }
     const array = displayPar.textContent.split(operator);
     array[0].slice(-1);
@@ -70,6 +70,7 @@ function parseDisplay(){
     }else{
         if(negativeNumber){
         number1 = Number(array[0] * (-1));
+        negativeNumber = false;
     }else{
         number1 = Number(array[0]);
     }
@@ -127,10 +128,11 @@ function changeDisplayText(string){
 //funzione che cancella
 function eraseDisplayText(all){
     if(all === true){
-        displayPar.textContent = "0";
+        displayPar.textContent = "";
+        displayResult = false;
     }else{
         displayPar.textContent = displayPar.textContent.slice(0, -1);
-        
+        displayResult = false;
     }
 }
 
@@ -144,6 +146,7 @@ padDiv.addEventListener("click", (e)=>{
     switch(target.id){
         case "one":
             changeDisplayText("1");
+            
             break;
         case "two":
             changeDisplayText("2");
@@ -193,6 +196,7 @@ padDiv.addEventListener("click", (e)=>{
             console.log(operator);
             break; 
         case "add":
+           
             if(!(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
             displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷") && operator !== ""){
             
@@ -216,23 +220,31 @@ padDiv.addEventListener("click", (e)=>{
         }
             break;    
         case "subtract":
-            if(!(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
-            displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷") && operator !== ""){
-            
-            parseDisplay();
-            eraseDisplayText(true);
-            changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
-            changeDisplayText("-");
+            if(displayPar.textContent === "" || displayPar.textContent === "0"){
                 
-                operator = "-";
+                    changeDisplayText("-");
+                    console.log(displayPar.textContent);
+                    negativeNumber = true;
+                
+                    
+                 
+            }else if(!(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
+                displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷") && operator !== ""){
+                
+                parseDisplay();
+                eraseDisplayText(true);
+                changeDisplayText(parseFloat(operate(operator, number1, number2).toFixed(2)));
+                changeDisplayText("-");
+                    
+                    operator = "-";
                 
             
             console.log(displayValue);
         }else if(displayPar.textContent.at(-1) === "+"||displayPar.textContent.at(-1) === "-"||
-        displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
-            eraseDisplayText(false);
-            changeDisplayText("-");
-            operator = "-";
+            displayPar.textContent.at(-1) === "X"||displayPar.textContent.at(-1) === "÷"){
+                eraseDisplayText(false);
+                changeDisplayText("-");
+                operator = "-";
             
         }else{
             changeDisplayText("-");
