@@ -288,3 +288,10 @@ pad.addEventListener("mouseup", (e)=>{
         target.style.backgroundImage = "url(./img/metallic1.jpg)";
     }
 });
+
+pad.addEventListener("mouseout", (e)=>{
+    let target = e.target;
+    if(target.classList.contains("button")){
+        target.style.backgroundImage = "url(./img/metallic1.jpg)";
+    }
+});
