@@ -128,7 +128,7 @@ function changeDisplayText(string){
 //funzione che cancella
 function eraseDisplayText(all){
     if(all === true){
-        displayPar.textContent = "";
+        displayPar.textContent = "0";
         displayResult = false;
     }else{
         displayPar.textContent = displayPar.textContent.slice(0, -1);

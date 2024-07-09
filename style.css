@@ -117,3 +117,8 @@ body{
     z-index: -2;
     background-repeat: no-repeat;
 }
+
+html{
+    position: relative;
+    min-height: 100%;
+}
